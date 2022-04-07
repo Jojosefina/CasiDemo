@@ -1,22 +1,26 @@
 extends KinematicBody2D
 
 var lin_vel = Vector2.ZERO
+
+#campo de vision
+var detection_value=0.0
+const MAX_LEVEL=100
+#
 export var RUNSPEED = 100
 export var RUNACCEL = 15
 export var FRIC = 30
 var facing_right = true
 onready var PLAYBACK = $AnimationTree.get("parameters/playback")
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var PROGRESS_BAR=get_parent().get_node("ProgressBar")
 
 
 # Inicializa al gatito con movimiento
 func _ready():
 	$AnimationTree.active = true
+	PROGRESS_BAR.max_value=MAX_LEVEL
 
+func _process(_delta):
+	PROGRESS_BAR.value=detection_value
 
 func _physics_process(delta):
 	var target_velX = (Input.get_action_strength("RIGHT") - Input.get_action_strength("LEFT"))
@@ -49,3 +53,9 @@ func _physics_process(delta):
 	else:
 		PLAYBACK.travel("IdleCat")
 		
+
+func detection_level(delta):
+	detection_value+=delta
+	print(detection_value)
+	
+	
