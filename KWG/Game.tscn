@@ -66,6 +66,7 @@ tile_data = PoolIntArray( 65547, 0, 0, 65554, 0, 0, 131083, 0, 0, 131090, 0, 0, 
 [node name="Block" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block"]
+visible = false
 position = Vector2( 96, 112 )
 shape = SubResource( 3 )
 
@@ -74,6 +75,7 @@ shape = SubResource( 3 )
 [node name="Block2" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block2"]
+visible = false
 position = Vector2( 232.5, 216 )
 shape = SubResource( 4 )
 
@@ -82,16 +84,21 @@ shape = SubResource( 4 )
 [node name="Block3" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block3"]
+visible = false
 position = Vector2( 367, 113 )
 shape = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Block3"]
 
 [node name="Pepe_malo" parent="." instance=ExtResource( 4 )]
+pause_mode = 2
 position = Vector2( 175, 81 )
+motion/sync_to_physics = true
 
 [node name="Pepe_malo2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 174, 118 )
+pause_mode = 2
+position = Vector2( 162, 98 )
+motion/sync_to_physics = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 margin_top = 1.0

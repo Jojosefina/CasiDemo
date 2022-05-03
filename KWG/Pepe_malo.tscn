@@ -93,6 +93,7 @@ animation = "Idle"
 [sub_resource type="AnimationNodeStateMachine" id=9]
 states/Idle/node = SubResource( 8 )
 states/Idle/position = Vector2( 329.667, 75 )
+start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
@@ -103,6 +104,7 @@ extents = Vector2( 40, 5 )
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -117,7 +119,6 @@ anims/RESET = SubResource( 7 )
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 9 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/playback = SubResource( 10 )
 
 [node name="Area2D" type="Area2D" parent="."]
