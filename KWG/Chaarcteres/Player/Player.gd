@@ -6,11 +6,13 @@ onready var detection_bar=$CanvasLayer/DetectionBar
 #campo de vision
 var detection_value=0.0
 const MAX_LEVEL_DETECTTION=100
+onready var melee_area = $melee
 
 
 func _ready():
 	$AnimationTree.active = true
 	detection_bar.max_value=MAX_LEVEL_DETECTTION
+	melee_area.connect("body_entered", self, "_on_melee_area_entered")
 	
 # Cosa de deteccion
 
@@ -29,7 +31,11 @@ func _get_input(delta):
 	var target_velX = (Input.get_action_strength("RIGHT") - Input.get_action_strength("LEFT"))
 	var target_velY = (Input.get_action_strength("DOWN") - Input.get_action_strength("UP"))
 	lin_vel = move_and_slide(lin_vel)
-	
+
+	if PLAYBACK.get_current_node() == "basic_attack":
+		target_velX = 0
+		target_velY = 0
+		
 	# VELOCIDAD EN X
 	if target_velX != 0:
 		lin_vel.x = lerp(lin_vel.x, target_velX * RUNSPEED, RUNACCEL * delta)
@@ -54,9 +60,15 @@ func _physics_process(delta:float)-> void:
 		scale.x *= -1
 	velocidad=move_and_slide(velocidad)
 	#animaciones
-	if lin_vel.length() >= 10:
-		PLAYBACK.travel("Run")
-	else:
-		PLAYBACK.travel("IdleCat")
+	var attacking = false
+	if Input.is_action_just_pressed("melee"):
+		PLAYBACK.travel("basic_attack")
+		attacking = true
+	if not attacking:
+		if lin_vel.length() >= 10:
+			PLAYBACK.travel("Run")
+		else:
+			PLAYBACK.travel("IdleCat")
 
-
+func _on_melee_area_entered(body:Node):
+	print("ola")
