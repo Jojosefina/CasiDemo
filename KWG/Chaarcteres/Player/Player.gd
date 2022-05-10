@@ -6,8 +6,13 @@ onready var detection_bar=$CanvasLayer/DetectionBar
 #campo de vision
 var detection_value=0.0
 const MAX_LEVEL_DETECTTION=100
-onready var melee_area = $melee
 
+#guantazos y balazos
+
+onready var melee_area = $melee
+export (PackedScene) var Bullet
+export(int) var speed=10
+onready var end_of_gun=$EndOfGun
 
 func _ready():
 	$AnimationTree.active = true
@@ -72,3 +77,18 @@ func _physics_process(delta:float)-> void:
 
 func _on_melee_area_entered(body:Node):
 	print("ola")
+
+func _unhandled_input(event: InputEvent)-> void:
+	if event.is_action_pressed("shoot"):
+		shoot()
+
+func shoot():
+	var bullet_instance= Bullet.instance()
+	add_child(bullet_instance)
+	bullet_instance.global_position=end_of_gun.global_position
+	var target=-$target.position
+	var direction_to_shoot=bullet_instance.global_position.direction_to(target).normalized()
+	bullet_instance.set_direction(direction_to_shoot)
+	
+	
+	
