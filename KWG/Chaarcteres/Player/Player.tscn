@@ -59,3 +59,6 @@ anims/basic_attack = SubResource( 2 )
 
 [node name="AnimationTree" parent="." index="4"]
 parameters/playback = SubResource( 1 )
+
+[node name="DetectionBar" parent="CanvasLayer" index="0"]
+visible = false
