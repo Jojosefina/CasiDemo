@@ -9,6 +9,8 @@ const MAX_LEVEL_DETECTTION=100
 
 #guantazos y balazos
 
+signal shoot(bullet, position, direction)
+
 onready var melee_area = $melee
 export (PackedScene) var Bullet
 export(int) var speed=10
@@ -63,6 +65,11 @@ func _physics_process(delta:float)-> void:
 	if Input.is_action_pressed("RIGHT") and not Input.is_action_pressed("LEFT") and not facing_right:
 		facing_right = not facing_right
 		scale.x *= -1
+	# rotacion de zona de melee y disparos
+	if Input.is_action_pressed("UP"):
+		pass
+	if Input.is_action_pressed("DOWN") :
+		pass
 	velocidad=move_and_slide(velocidad)
 	#animaciones
 	var attacking = false
@@ -75,7 +82,7 @@ func _physics_process(delta:float)-> void:
 		else:
 			PLAYBACK.travel("IdleCat")
 
-func _on_melee_area_entered(body:Node):
+func _on_melee_area_entered(_body:Node):
 	print("ola")
 
 func _unhandled_input(event: InputEvent)-> void:
@@ -84,11 +91,8 @@ func _unhandled_input(event: InputEvent)-> void:
 
 func shoot():
 	var bullet_instance= Bullet.instance()
-	add_child(bullet_instance)
-	bullet_instance.global_position=end_of_gun.global_position
-	var target=-$target.position
-	var direction_to_shoot=bullet_instance.global_position.direction_to(target).normalized()
-	bullet_instance.set_direction(direction_to_shoot)
-	
+	var target=$target
+	var direction_to_shoot=(target.global_position-end_of_gun.global_position).normalized()
+	emit_signal('shoot', bullet_instance, end_of_gun.global_position, direction_to_shoot)
 	
 	
