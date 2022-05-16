@@ -7,6 +7,9 @@ onready var detection_bar=$CanvasLayer/DetectionBar
 var detection_value=0.0
 const MAX_LEVEL_DETECTTION=100
 
+#salud
+var health: int=100
+
 #guantazos y balazos
 
 signal shoot(bullet, position, direction)
@@ -15,7 +18,12 @@ onready var melee_area = $melee
 export (PackedScene) var Bullet
 export(int) var speed=10
 onready var end_of_gun=$EndOfGun
+onready var shoot_cooldown=$Shoot_Cooldown
 
+
+
+
+#funciones
 func _ready():
 	$AnimationTree.active = true
 	detection_bar.max_value=MAX_LEVEL_DETECTTION
@@ -83,16 +91,22 @@ func _physics_process(delta:float)-> void:
 			PLAYBACK.travel("IdleCat")
 
 func _on_melee_area_entered(_body:Node):
-	print("ola")
+	if _body.has_method('handle_hit'):
+		_body.handle_hit()
+		
+	
 
 func _unhandled_input(event: InputEvent)-> void:
 	if event.is_action_pressed("shoot"):
 		shoot()
 
 func shoot():
-	var bullet_instance= Bullet.instance()
-	var target=$target
-	var direction_to_shoot=(target.global_position-end_of_gun.global_position).normalized()
-	emit_signal('shoot', bullet_instance, end_of_gun.global_position, direction_to_shoot)
+	if shoot_cooldown.is_stopped():
+		var bullet_instance= Bullet.instance()
+		var target=$target
+		var direction_to_shoot=(target.global_position-end_of_gun.global_position).normalized()
+		emit_signal('shoot', bullet_instance, end_of_gun.global_position, direction_to_shoot)
+		shoot_cooldown.start()
+
 	
 	

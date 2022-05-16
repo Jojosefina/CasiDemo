@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 shape = SubResource( 20 )
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.980392, 0.054902, 0.054902, 1 )
 scale = Vector2( 0.0833333, 0.078125 )
 texture = ExtResource( 1 )
 
@@ -20,4 +21,5 @@ texture = ExtResource( 1 )
 wait_time = 10.0
 one_shot = true
 
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
 [connection signal="timeout" from="KillTimer" to="." method="_on_KillTimer_timeout"]

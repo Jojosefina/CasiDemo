@@ -261,12 +261,16 @@ margin_bottom = 14.0
 [node name="melee" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="melee"]
-position = Vector2( 15, -5 )
+position = Vector2( 15, 0 )
 shape = SubResource( 18 )
 disabled = true
 
 [node name="EndOfGun" type="Position2D" parent="."]
-position = Vector2( 10, -3 )
+position = Vector2( 10, 0 )
 
 [node name="target" type="Position2D" parent="."]
-position = Vector2( 100, -3 )
+position = Vector2( 100, 0 )
+
+[node name="Shoot_Cooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

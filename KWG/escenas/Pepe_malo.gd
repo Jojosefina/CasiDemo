@@ -1,18 +1,19 @@
 extends Character
 class_name Enemy
 
+# fisicas
 var run_speed = 60
 var velocity = Vector2.ZERO
 var path: PoolVector2Array
 
-# guion bajo se refiere a funciones override 
+#persecucion
+onready var timer= $tiempo_agro
 
-onready var timer= $Timer
+#salud
 
-
+var health: int=100
 var player 
 var target
-
 
 func _ready():
 	timer.connect("timeout",self, "on_timeout")
@@ -52,6 +53,11 @@ func _physics_process(delta):
 		velocity = Vector2.ZERO
 	velocity = move_and_slide(velocity)
 
+func handle_hit():
+	health-=20
+	if health <=0:
+		queue_free()
+	print('enemigo dañado', health )
 
 
 
