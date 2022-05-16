@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Bullet",
 "language": "GDScript",
-"path": "res://Chaarcteres/Player/Bullet.gd"
+"path": "res://escenas/Armas y manejo/Bullet.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Character",
@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Character",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://escenas/Pepe_malo.gd"
+"path": "res://Chaarcteres/Enemigos/Enemigo.gd"
 }, {
 "base": "Node",
 "class": "FiniteStateMachine",
