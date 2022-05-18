@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://escenas/Armas y manejo/Bullet.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Chaarcteres/Player/Laser.gd" type="Script" id=2]
+[ext_resource path="res://escenas/Armas y manejo/Laser.gd" type="Script" id=2]
 
-[node name="Arma_Lejana" type="Node2D"]
+[node name="Laser" type="Node2D"]
 script = ExtResource( 2 )
 Bullet = ExtResource( 1 )
 

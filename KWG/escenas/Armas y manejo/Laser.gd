@@ -1,7 +1,7 @@
 extends Node2D
+class_name Laser
 
 
-signal laser_disparado(bullet, location, direction)
 
 
 
@@ -15,5 +15,5 @@ func shoot():
 		var bullet_instance= Bullet.instance()
 		var target=$target
 		var direction_to_shoot=(target.global_position-end_of_gun.global_position).normalized()
-		emit_signal('laser_disparado', bullet_instance, end_of_gun.global_position, direction_to_shoot)
+		SenalesGlobales.emit_signal('disparo', bullet_instance, end_of_gun.global_position, direction_to_shoot)
 		shoot_cooldown.start()

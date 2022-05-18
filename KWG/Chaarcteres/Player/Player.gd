@@ -13,7 +13,7 @@ onready var health_stat= $Salud
 
 #guantazos y balazos
 
-signal shoot(bullet, position, direction)
+
 
 onready var melee_area = $melee
 onready var laser= $Arma_Lejana
@@ -27,7 +27,7 @@ func _ready():
 	$AnimationTree.active = true
 	detection_bar.max_value=MAX_LEVEL_DETECTTION
 	melee_area.connect("body_entered", self, "_on_melee_area_entered")
-	laser.connect("laser_disparado",self,'shoot')
+	
 
 
 
@@ -75,6 +75,7 @@ func _physics_process(delta:float)-> void:
 	if Input.is_action_pressed("RIGHT") and not Input.is_action_pressed("LEFT") and not facing_right:
 		facing_right = not facing_right
 		scale.x *= -1
+		
 	# rotacion de zona de melee y disparos
 	if Input.is_action_pressed("UP"):
 		pass
@@ -102,8 +103,6 @@ func _unhandled_input(event: InputEvent)-> void:
 	if event.is_action_pressed("shoot"):
 		laser.shoot()
 
-func shoot(bullet_instance, location: Vector2, direction: Vector2):
-	emit_signal("shoot", bullet_instance, location, direction)
 
 func handle_hit():
 	health_stat.health-=20

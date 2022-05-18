@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
-"path": "res://escenas/Pepe.gd"
+"path": "res://escenas/pepe/Pepe.gd"
 }, {
 "base": "Character",
 "class": "Enemy",
@@ -32,7 +32,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "FiniteStateMachine",
 "language": "GDScript",
-"path": "res://escenas/FSM_pepe.gd"
+"path": "res://escenas/pepe/FSM_pepe.gd"
+}, {
+"base": "Node2D",
+"class": "Laser",
+"language": "GDScript",
+"path": "res://escenas/Armas y manejo/Laser.gd"
 }, {
 "base": "Character",
 "class": "Player",
@@ -45,6 +50,7 @@ _global_script_class_icons={
 "Character": "",
 "Enemy": "",
 "FiniteStateMachine": "",
+"Laser": "",
 "Player": ""
 }
 
@@ -53,6 +59,10 @@ _global_script_class_icons={
 config/name="KWG"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+SenalesGlobales="*res://Globales/SenalesGlobales.gd"
 
 [display]
 
