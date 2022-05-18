@@ -26,6 +26,6 @@ func _on_KillTimer_timeout() -> void:
 
 
 func _on_Bullet_body_entered(body):
-	if body.has_method('handle_hit'):
+	if body.has_method('handle_hit') and body is KinematicBody2D:
 		body.handle_hit()
 		queue_free()

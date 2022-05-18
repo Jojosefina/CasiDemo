@@ -8,17 +8,16 @@ var detection_value=0.0
 const MAX_LEVEL_DETECTTION=100
 
 #salud
-var health: int=100
+onready var health_stat= $Salud
+
 
 #guantazos y balazos
 
 signal shoot(bullet, position, direction)
 
 onready var melee_area = $melee
-export (PackedScene) var Bullet
+onready var laser= $Arma_Lejana
 export(int) var speed=10
-onready var end_of_gun=$EndOfGun
-onready var shoot_cooldown=$Shoot_Cooldown
 
 
 
@@ -28,7 +27,10 @@ func _ready():
 	$AnimationTree.active = true
 	detection_bar.max_value=MAX_LEVEL_DETECTTION
 	melee_area.connect("body_entered", self, "_on_melee_area_entered")
-	
+	laser.connect("laser_disparado",self,'shoot')
+
+
+
 # Cosa de deteccion
 
 func _process(_delta):
@@ -98,15 +100,14 @@ func _on_melee_area_entered(_body:Node):
 
 func _unhandled_input(event: InputEvent)-> void:
 	if event.is_action_pressed("shoot"):
-		shoot()
+		laser.shoot()
 
-func shoot():
-	if shoot_cooldown.is_stopped():
-		var bullet_instance= Bullet.instance()
-		var target=$target
-		var direction_to_shoot=(target.global_position-end_of_gun.global_position).normalized()
-		emit_signal('shoot', bullet_instance, end_of_gun.global_position, direction_to_shoot)
-		shoot_cooldown.start()
+func shoot(bullet_instance, location: Vector2, direction: Vector2):
+	emit_signal("shoot", bullet_instance, location, direction)
 
-	
+func handle_hit():
+	health_stat.health-=20
+	print('AUCH', health_stat.health)
+	if health_stat.health<=0:
+		queue_free()
 	

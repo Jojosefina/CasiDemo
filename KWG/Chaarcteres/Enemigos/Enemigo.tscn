@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Art/animales/1 Dog/Idle.png" type="Texture" id=1]
 [ext_resource path="res://Chaarcteres/Enemigos/Enemigo.gd" type="Script" id=2]
+[ext_resource path="res://escenas/Salud.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Chaarcteres/Enemigos/AI.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 16, 10 )
@@ -97,9 +99,6 @@ start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
-[sub_resource type="CircleShape2D" id=12]
-radius = 100.0
-
 [node name="Enemigo" type="KinematicBody2D"]
 collision_layer = 3
 script = ExtResource( 2 )
@@ -122,22 +121,6 @@ tree_root = SubResource( 9 )
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource( 10 )
 
-[node name="Campo_de_vision" type="Area2D" parent="."]
-position = Vector2( 49, -15 )
-collision_layer = 2
-collision_mask = 2
+[node name="Salud" parent="." instance=ExtResource( 3 )]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Campo_de_vision"]
-position = Vector2( -5, -1 )
-polygon = PoolVector2Array( 2, -20, 34, -22, 47, -6, 37, 16, 5, 16, -31, 2 )
-
-[node name="zona_de_agro" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="zona_de_agro"]
-shape = SubResource( 12 )
-
-[node name="tiempo_agro" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
+[node name="AI" parent="." instance=ExtResource( 4 )]
