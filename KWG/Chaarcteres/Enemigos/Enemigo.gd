@@ -5,7 +5,7 @@ class_name Enemy
 var run_speed = 60
 var velocity = Vector2.ZERO
 var path: PoolVector2Array
-
+var knockback=Vector2.ZERO
 #ai
 onready var ai=$AI
 
@@ -25,7 +25,12 @@ func _ready()-> void:
 	$AnimationTree.active = true
 	ai.initialize(self)
 
-
+func _physics_process(delta):
+	knockback=knockback.move_toward(Vector2.ZERO,200*delta)
+	knockback=move_and_slide(knockback)
+	
+	
+	
 func _chase(velocity):
 	#chase
 	move_and_slide(velocity)
@@ -39,3 +44,7 @@ func handle_hit():
 
 
 
+
+func _on_Hurtbox_body_entered(body):
+	if body is Player:
+		knockback=body.melee_area.knockback_vector*120

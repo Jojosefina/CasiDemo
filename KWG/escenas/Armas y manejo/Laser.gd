@@ -1,7 +1,8 @@
 extends Node2D
 class_name Laser
 
-
+onready var end_gun=$EndOfGun
+onready var target=$target
 
 
 
@@ -17,3 +18,11 @@ func shoot():
 		var direction_to_shoot=(target.global_position-end_of_gun.global_position).normalized()
 		SenalesGlobales.emit_signal('disparo', bullet_instance, end_of_gun.global_position, direction_to_shoot)
 		shoot_cooldown.start()
+
+func rotate_up():
+	pass
+	
+
+func _rotate_down():
+	pass
+	

@@ -18,7 +18,7 @@ onready var health_stat= $Salud
 onready var melee_area = $melee
 onready var laser= $Arma_Lejana
 export(int) var speed=10
-
+var roll_vector=Vector2.LEFT
 
 
 
@@ -45,10 +45,14 @@ func detection_level(delta):
 #movimiento
 
 func _get_input(delta):
+	#var input_vector=Vector2.ZERO
 	var target_velX = (Input.get_action_strength("RIGHT") - Input.get_action_strength("LEFT"))
 	var target_velY = (Input.get_action_strength("DOWN") - Input.get_action_strength("UP"))
 	lin_vel = move_and_slide(lin_vel)
-
+	#input_vector.x=target_velX
+	#input_vector.y=target_velY
+	
+	#melee_area.knockback_vector=input_vector
 	if PLAYBACK.get_current_node() == "basic_attack":
 		target_velX = 0
 		target_velY = 0
@@ -77,14 +81,15 @@ func _physics_process(delta:float)-> void:
 		scale.x *= -1
 		
 	# rotacion de zona de melee y disparos
-	if Input.is_action_pressed("UP"):
+	if Input.is_action_pressed("UP") and not Input.is_action_pressed("DOWN"):
 		pass
-	if Input.is_action_pressed("DOWN") :
+	if Input.is_action_pressed("DOWN") and not Input.is_action_pressed("UP") :
 		pass
 	velocidad=move_and_slide(velocidad)
 	#animaciones
 	var attacking = false
 	if Input.is_action_just_pressed("melee"):
+		print("golpe")
 		PLAYBACK.travel("basic_attack")
 		attacking = true
 	if not attacking:
