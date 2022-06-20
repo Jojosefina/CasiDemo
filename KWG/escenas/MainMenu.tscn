@@ -1,0 +1,214 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Fuentes/GravityRegular5.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Fuentes/GravityBold8.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://icono_gatito.png" type="Texture" id=3]
+[ext_resource path="res://Art/Free Industrial Zone Tileset/2 Background/Background.png" type="Texture" id=4]
+[ext_resource path="res://escenas/MainMenu.gd" type="Script" id=5]
+[ext_resource path="res://Art/Free Industrial Zone Tileset/2 Background/1.png" type="Texture" id=6]
+[ext_resource path="res://Art/Free Industrial Zone Tileset/2 Background/4.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+outline_size = 2
+outline_color = Color( 0.0392157, 0.145098, 0.988235, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 10
+outline_size = 1
+outline_color = Color( 0.388235, 0.0901961, 0.686275, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 10
+outline_size = 1
+outline_color = Color( 0.388235, 0.0901961, 0.686275, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 10
+outline_size = 1
+outline_color = Color( 0.388235, 0.0901961, 0.686275, 1 )
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=6]
+outline_size = 2
+outline_color = Color( 0.0392157, 0.145098, 0.988235, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 12
+outline_size = 1
+outline_color = Color( 0.458824, 0.301961, 0.0509804, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 12
+outline_size = 1
+outline_color = Color( 0.458824, 0.301961, 0.0509804, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 12
+outline_size = 1
+outline_color = Color( 0.460449, 0.30146, 0.0503616, 1 )
+font_data = ExtResource( 2 )
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 576.0
+margin_bottom = 324.0
+texture = ExtResource( 4 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -109.0
+margin_top = -48.0
+margin_right = 109.0
+margin_bottom = 48.0
+custom_constants/separation = 20
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+margin_right = 218.0
+margin_bottom = 20.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 5 )
+text = "El Gatooooo"
+
+[node name="IconoGatito" type="Sprite" parent="VBoxContainer2/Label"]
+position = Vector2( 234, 9 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+margin_top = 40.0
+margin_right = 218.0
+margin_bottom = 96.0
+alignment = 1
+
+[node name="Start" type="Button" parent="VBoxContainer2/VBoxContainer"]
+margin_right = 218.0
+margin_bottom = 16.0
+custom_colors/font_color_hover = Color( 0.0941176, 0.360784, 0.415686, 1 )
+custom_colors/font_color_pressed = Color( 0.305882, 0.0117647, 0.0117647, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Jugar"
+flat = true
+
+[node name="Options" type="Button" parent="VBoxContainer2/VBoxContainer"]
+margin_top = 20.0
+margin_right = 218.0
+margin_bottom = 36.0
+custom_colors/font_color_hover = Color( 0.0941176, 0.360784, 0.415686, 1 )
+custom_colors/font_color_pressed = Color( 0.305882, 0.0117647, 0.0117647, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "Opciones"
+flat = true
+
+[node name="Quit" type="Button" parent="VBoxContainer2/VBoxContainer"]
+margin_top = 40.0
+margin_right = 218.0
+margin_bottom = 56.0
+custom_colors/font_color_hover = Color( 0.0941176, 0.360784, 0.415686, 1 )
+custom_colors/font_color_pressed = Color( 0.305882, 0.0117647, 0.0117647, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Salir"
+flat = true
+
+[node name="OptionsMenu" type="Popup" parent="."]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TextureRect" type="TextureRect" parent="OptionsMenu"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 6 )
+
+[node name="TextureRect2" type="TextureRect" parent="OptionsMenu"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 7 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -50.0
+margin_bottom = 30.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 26
+
+[node name="Title" type="Label" parent="OptionsMenu/VBoxContainer"]
+margin_right = 480.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 6 )
+text = "Opciones"
+align = 1
+valign = 1
+
+[node name="SetBtn" type="HBoxContainer" parent="OptionsMenu/VBoxContainer"]
+margin_top = 42.0
+margin_right = 480.0
+margin_bottom = 60.0
+custom_constants/separation = 70
+alignment = 1
+
+[node name="Video" type="Button" parent="OptionsMenu/VBoxContainer/SetBtn"]
+margin_left = 44.0
+margin_right = 111.0
+margin_bottom = 18.0
+rect_pivot_offset = Vector2( -70, 65 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.305882, 0.0117647, 0.0117647, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Video"
+flat = true
+
+[node name="Audio" type="Button" parent="OptionsMenu/VBoxContainer/SetBtn"]
+margin_left = 181.0
+margin_right = 248.0
+margin_bottom = 18.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.305882, 0.0117647, 0.0117647, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "Audio"
+flat = true
+
+[node name="Controls" type="Button" parent="OptionsMenu/VBoxContainer/SetBtn"]
+margin_left = 318.0
+margin_right = 435.0
+margin_bottom = 18.0
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.305882, 0.0117647, 0.0117647, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "Controles"
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OptionsMenu/VBoxContainer"]
+margin_top = 86.0
+margin_right = 480.0
+margin_bottom = 100.0
+alignment = 1
+
+[node name="AudioSettings" type="GridContainer" parent="OptionsMenu/VBoxContainer/HBoxContainer"]
+margin_left = 240.0
+margin_right = 240.0
+margin_bottom = 14.0
+
+[node name="Aud_set" type="Label" parent="OptionsMenu/VBoxContainer/HBoxContainer/AudioSettings"]
+margin_bottom = 14.0
+align = 1
+
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="VBoxContainer2/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
