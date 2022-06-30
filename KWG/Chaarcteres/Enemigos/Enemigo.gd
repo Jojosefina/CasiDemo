@@ -41,10 +41,3 @@ func handle_hit():
 		queue_free()
 	print('enemigo dañado', health_stat.health)
 
-
-
-
-
-func _on_Hurtbox_body_entered(body):
-	if body is Player:
-		knockback=body.melee_area.knockback_vector*120

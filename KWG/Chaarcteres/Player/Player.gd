@@ -1,15 +1,17 @@
 extends Character
 
 class_name Player 
-onready var detection_bar=$CanvasLayer/DetectionBar
+
 
 #campo de vision
+onready var detection_bar=$CanvasLayer/DetectionBar
 var detection_value=0.0
 const MAX_LEVEL_DETECTTION=100
 
 #salud
+onready var health_bar=$CanvasLayer/HealthBar
 onready var health_stat= $Salud
-
+const MAX_HEALTH=100
 
 #guantazos y balazos
 
@@ -26,6 +28,7 @@ var roll_vector=Vector2.LEFT
 func _ready():
 	$AnimationTree.active = true
 	detection_bar.max_value=MAX_LEVEL_DETECTTION
+	health_bar.max_value=MAX_HEALTH
 	melee_area.connect("body_entered", self, "_on_melee_area_entered")
 	
 
@@ -35,6 +38,7 @@ func _ready():
 
 func _process(_delta):
 	detection_bar.value=detection_value
+	health_bar.value=health_stat.health
 
 func detection_level(delta):
 	detection_value+=40*delta

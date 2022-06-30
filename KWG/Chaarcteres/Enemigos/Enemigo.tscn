@@ -100,14 +100,13 @@ start_node = "Idle"
 [sub_resource type="AnimationNodeStateMachinePlayback" id=10]
 
 [sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 14.5, 10 )
+extents = Vector2( 7.5, 14.5 )
 
 [node name="Enemigo" type="KinematicBody2D" groups=["Enemigos"]]
 collision_layer = 3
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
+[node name="HitBox" type="CollisionShape2D" parent="."]
 position = Vector2( -0.5, 0 )
 shape = SubResource( 11 )
 
@@ -129,11 +128,8 @@ parameters/playback = SubResource( 10 )
 
 [node name="AI" parent="." instance=ExtResource( 4 )]
 
-[node name="Hurtbox" type="Area2D" parent="."]
-visible = false
+[node name="MeleeArea" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2( -0.5, 0 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeArea"]
+position = Vector2( 22.5, -4.5 )
 shape = SubResource( 12 )
-
-[connection signal="body_entered" from="Hurtbox" to="." method="_on_Hurtbox_body_entered"]
