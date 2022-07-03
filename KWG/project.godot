@@ -63,6 +63,7 @@ config/icon="res://icon.png"
 [autoload]
 
 SenalesGlobales="*res://Globales/SenalesGlobales.gd"
+PauseMenu="*res://escenas/Menu/pause_menu.tscn"
 
 [display]
 
