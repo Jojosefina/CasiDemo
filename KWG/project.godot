@@ -57,13 +57,12 @@ _global_script_class_icons={
 [application]
 
 config/name="KWG"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://escenas/Menu/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 SenalesGlobales="*res://Globales/SenalesGlobales.gd"
-PauseMenu="*res://escenas/Menu/pause_menu.tscn"
 
 [display]
 
