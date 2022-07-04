@@ -20,11 +20,6 @@ _global_script_classes=[ {
 "path": "res://escenas/Armas y manejo/Bullet.gd"
 }, {
 "base": "KinematicBody2D",
-"class": "Character",
-"language": "GDScript",
-"path": "res://escenas/pepe/Pepe.gd"
-}, {
-"base": "Character",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://Chaarcteres/Enemigos/Enemigo.gd"
@@ -39,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://escenas/Armas y manejo/Laser.gd"
 }, {
-"base": "Character",
+"base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Chaarcteres/Player/Player.gd"
@@ -47,7 +42,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AI": "",
 "Bullet": "",
-"Character": "",
 "Enemy": "",
 "FiniteStateMachine": "",
 "Laser": "",

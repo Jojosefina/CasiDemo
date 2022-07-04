@@ -1,18 +1,10 @@
 extends KinematicBody2D
 
-class_name Character
-
-
-var lin_vel: Vector2 = Vector2.ZERO
-var velocidad: Vector2= Vector2.ZERO
 
 
 
-export var RUNSPEED = 100
-export var RUNACCEL = 15
-export var FRIC = 30
 var facing_right = true
-var facing_up= true
+var facing_down= true
 onready var PLAYBACK = $AnimationTree.get("parameters/playback")
 
 

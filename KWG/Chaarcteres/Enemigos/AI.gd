@@ -9,9 +9,11 @@ onready var zona_agro=$zona_de_agro
 onready var timer_agro=$tiempo_agro
 onready var timer_patrullaje=$tiempo_patrullaje
 var facing_rigth=true
+
+
 #estados
 enum State{ PATRULLAR,
-	AGRO
+	AGRO,
 }
 
 var current_state: int= -1 setget set_state
@@ -63,7 +65,6 @@ func _process(delta:float)-> void:
 				if abs(angulo_jogador)<PI/2 and not facing_rigth: 
 					facing_rigth= not facing_rigth
 					actor.scale.x *= -1
-				
 				if target :
 					player.detection_level(delta)
 			else:
@@ -115,4 +116,4 @@ func _on_tiempo_patrullaje_timeout():
 	var random_y=rand_range(-rango,rango)
 	lugar_patrullaje=Vector2(random_x,random_y) + origin
 	lugar_patrullaje_llegado=false
-	actor.velocity=actor.global_position.direction_to(lugar_patrullaje)*100
+	actor.velocity=actor.global_position.direction_to(lugar_patrullaje)*70
