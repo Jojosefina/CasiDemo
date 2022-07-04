@@ -1,26 +1,21 @@
 extends Character
 
 class_name Player 
-
+onready var detection_bar=$CanvasLayer/DetectionBar
 
 #campo de vision
-onready var detection_bar=$CanvasLayer/DetectionBar
 var detection_value=0.0
 const MAX_LEVEL_DETECTTION=100
 
 #salud
-onready var health_bar=$CanvasLayer/HealthBar
 onready var health_stat= $Salud
-const MAX_HEALTH=100
+
 
 #guantazos y balazos
-
-
-
 onready var melee_area = $melee
 onready var laser= $Arma_Lejana
 export(int) var speed=10
-var roll_vector=Vector2.LEFT
+
 
 
 
@@ -28,23 +23,18 @@ var roll_vector=Vector2.LEFT
 func _ready():
 	$AnimationTree.active = true
 	detection_bar.max_value=MAX_LEVEL_DETECTTION
-	health_bar.max_value=MAX_HEALTH
 	melee_area.connect("body_entered", self, "_on_melee_area_entered")
 	
-
 
 
 # Cosa de deteccion
 
 func _process(_delta):
 	detection_bar.value=detection_value
-	health_bar.value=health_stat.health
 
 func detection_level(delta):
 	detection_value+=40*delta
 	detection_bar.value=detection_value
-
-
 
 #movimiento
 
@@ -80,14 +70,23 @@ func _physics_process(delta:float)-> void:
 	if Input.is_action_pressed("LEFT") and not Input.is_action_pressed("RIGHT") and facing_right:
 		facing_right = not facing_right
 		scale.x *= -1
+		#if not Input.is_action_pressed("UP") and not Input.is_action_pressed("DOWN"):
+			#global_rotation_degrees=0
 	if Input.is_action_pressed("RIGHT") and not Input.is_action_pressed("LEFT") and not facing_right:
 		facing_right = not facing_right
 		scale.x *= -1
-		
+		#if not Input.is_action_pressed("UP") and not Input.is_action_pressed("DOWN"):
+			#global_rotation_degrees=-180
 	# rotacion de zona de melee y disparos
-	if Input.is_action_pressed("UP") and not Input.is_action_pressed("DOWN"):
+	if Input.is_action_pressed("UP") and not Input.is_action_pressed("DOWN") and facing_up:
+		#facing_up= not facing_up
+		#global_rotation_degrees=0
+		#global_rotation_degrees=-90
 		pass
-	if Input.is_action_pressed("DOWN") and not Input.is_action_pressed("UP") :
+	if Input.is_action_pressed("DOWN") and not Input.is_action_pressed("UP") and not facing_up:
+		#facing_up= not facing_up
+		#global_rotation_degrees=0
+		#global_rotation_degrees=90
 		pass
 	velocidad=move_and_slide(velocidad)
 	#animaciones
@@ -104,9 +103,13 @@ func _physics_process(delta:float)-> void:
 
 func _on_melee_area_entered(_body:Node):
 	if _body.has_method('handle_hit'):
-		_body.handle_hit()
-		
-	
+		#agregamos knockback
+		var knockback_vector=Vector2.ZERO
+		knockback_vector.x=Input.get_action_strength("RIGHT")-Input.get_action_strength("LEFT")
+		knockback_vector.y=Input.get_action_strength("UP")-Input.get_action_strength("DOWN")
+		knockback_vector=knockback_vector.normalized()
+		_body.handle_hit(knockback_vector)
+
 
 func _unhandled_input(event: InputEvent)-> void:
 	if event.is_action_pressed("shoot"):

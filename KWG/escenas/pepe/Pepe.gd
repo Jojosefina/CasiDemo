@@ -12,6 +12,7 @@ export var RUNSPEED = 100
 export var RUNACCEL = 15
 export var FRIC = 30
 var facing_right = true
+var facing_up= true
 onready var PLAYBACK = $AnimationTree.get("parameters/playback")
 
 
