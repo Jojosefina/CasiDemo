@@ -101,14 +101,11 @@ func _physics_process(delta:float)-> void:
 		else:
 			PLAYBACK.travel("IdleCat")
 
-func _on_melee_area_entered(_body:Node):
-	if _body.has_method('handle_hit'):
+func _on_melee_area_entered(body:Node):
+	if body.has_method('handle_hit'):
 		#agregamos knockback
-		var knockback_vector=Vector2.ZERO
-		knockback_vector.x=Input.get_action_strength("RIGHT")-Input.get_action_strength("LEFT")
-		knockback_vector.y=Input.get_action_strength("UP")-Input.get_action_strength("DOWN")
-		knockback_vector=knockback_vector.normalized()
-		_body.handle_hit(knockback_vector)
+		var knockback_vector = global_position.direction_to(body.global_position)
+		body.handle_hit(knockback_vector)
 
 
 func _unhandled_input(event: InputEvent)-> void:
@@ -116,7 +113,7 @@ func _unhandled_input(event: InputEvent)-> void:
 		laser.shoot()
 
 
-func handle_hit():
+func handle_hit(knockback:Vector2):
 	health_stat.health-=20
 	print('AUCH', health_stat.health)
 	if health_stat.health<=0:
